@@ -37,7 +37,7 @@ def login():
         password = str(request.form.get('user-pass'))
         password = hashlib.sha256(password.encode()).hexdigest()
 
-        user = db.query(User).filter_by(email=email).first()
+        user = db.query(User).filter_by(email=email, name=name).first()
         if not user:
             secret = random.randint(1, MAX_SECRET)
             user = User(name=name, email=email, secret_number=secret, passwd=password)
@@ -49,6 +49,33 @@ def login():
 
         token = str(uuid.uuid4())
         user.session_token = token
+        db.add(user)
+        db.commit()
+
+        response = make_response(redirect(url_for('index')))
+        response.set_cookie('token', token, httponly=True, samesite='strict')
+
+    return response
+
+
+@app.route('/sign-up', methods=['GET', 'POST'])
+def sign_up():
+    if request.method == 'GET':
+        response = render_template('sign-up.html')
+    else:
+        name = request.form.get('user-name')
+        email = request.form.get('user-email')
+        password = str(request.form.get('user-pass'))
+        password = hashlib.sha256(password.encode()).hexdigest()
+
+        user = db.query(User).filter_by(email=email).first()
+        if user:
+            alert = {'message': 'Uporabnik s tem elektronskim naslovom že obstaja.', 'type': 'warning'}
+            return render_template('sign-up.html', alert=alert)
+
+        secret = random.randint(1, MAX_SECRET)
+        token = str(uuid.uuid4())
+        user = User(name=name, email=email, secret_number=secret, passwd=password, session_token=token)
         db.add(user)
         db.commit()
 

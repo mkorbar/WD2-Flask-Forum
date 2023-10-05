@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+
+    {% block content %}
+
+    <h1>Ustvari uporabniški račun</h1>
+    {% if alert %}
+    <div class="alert alert-{{alert['type']}}">{{alert['message']}}</div>
+    {% endif %}
+    <form action="sign-up" method="post">
+        <div class="mb-3">
+            <label class="form-label" for="user-name">Ime</label>
+            <input class="form-control" type="text" id="user-name" name="user-name" placeholder="Janez">
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="user-email">Email</label>
+            <input class="form-control" type="email" id="user-email" name="user-email" placeholder="janez@example.si">
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="user-email">Password</label>
+            <input class="form-control" type="password" id="user-pass" name="user-pass">
+        </div>
+        <button type="submit" class="btn btn-primary">Pošlji</button>
+    </form>
+    {% endblock content %}

@@ -3,20 +3,19 @@
 
     {% block content %}
 
-    <h1>Prijavi se v igro</h1>
+    <h1>Prijavi se</h1>
     <form action="login" method="post">
         <div class="mb-3">
-            <label class="form-label" for="user-name">Ime</label>
-            <input class="form-control" type="text" id="user-name" name="user-name" placeholder="Janez">
+            <label class="form-label" for="user-email-name">Ime ali Email</label>
+            <input class="form-control" type="text" id="user-email-name" name="user-email-name" placeholder="janez@example.si">
         </div>
         <div class="mb-3">
-            <label class="form-label" for="user-email">Email</label>
-            <input class="form-control" type="email" id="user-email" name="user-email" placeholder="janez@example.si">
-        </div>
-        <div class="mb-3">
-            <label class="form-label" for="user-email">Password</label>
+            <label class="form-label" for="user-pass">Password</label>
             <input class="form-control" type="password" id="user-pass" name="user-pass">
         </div>
-        <button type="submit" class="btn btn-primary">Začni</button>
+        <div class="mb-3">
+            Če še računa še nimaš si <a href="/sign-up">ustvari nov račun</a>.
+        </div>
+        <button type="submit" class="btn btn-primary">Prijava</button>
     </form>
     {% endblock content %}

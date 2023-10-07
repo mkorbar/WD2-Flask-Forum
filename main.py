@@ -1,10 +1,11 @@
 import random
-from flask import Flask, render_template, request, make_response, redirect, url_for
-from models import User, db
+from flask import Flask, render_template, request, make_response, redirect, url_for, abort
+from models import User, Topic, db
 import uuid
 import hashlib
 
 app = Flask(__name__)
+app.url_map.strict_slashes = False
 db.create_all()
 
 MAX_SECRET = 30
@@ -27,25 +28,56 @@ def about():
     return render_template('about.html')
 
 
+@app.route('/forum', methods=['GET'])
+def forum():
+    topics = db.query(Topic).all()
+    return render_template('forum.html', topics=topics)
+
+
+@app.route('/forum/new-topic', methods=['GET', 'POST'])
+def forum_new_topic():
+    if request.method == 'GET':
+        return render_template('forum-new-topic.html')
+    else:
+        name = request.form.get('topic-name')
+        body = request.form.get('topic-body')
+
+        user = get_user()
+        if not user:
+            return redirect(url_for('login'))
+
+        topic = Topic.create(title=name, text=body, author=user)
+        return redirect(url_for('forum'))
+
+
+@app.route('/forum/<topic_id>', methods=['GET'])
+def forum_topic_detail(topic_id):
+    try:
+        topic_id = int(topic_id)
+    except ValueError:
+        abort(404)
+
+    topic = db.query(Topic).filter_by(id=int(topic_id)).first()
+    return render_template('forum-topic.html', topic=topic)
+
+
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'GET':
         response = render_template('login.html')
     else:
-        name = request.form.get('user-name')
         email = request.form.get('user-email')
-        password = str(request.form.get('user-pass'))
-        password = hashlib.sha256(password.encode()).hexdigest()
+        password = hashlib.sha256(request.form.get('user-pass').encode()).hexdigest()
 
-        user = db.query(User).filter_by(email=email, name=name).first()
+        user = db.query(User).filter_by(email=email, passwd=password).first()
         if not user:
-            secret = random.randint(1, MAX_SECRET)
-            user = User(name=name, email=email, secret_number=secret, passwd=password)
-            db.add(user)
-            db.commit()
-
-        if password != user.passwd:
-            return "Napačno geslo!!!!"
+            alert = {
+                'message': 'Napačno geslo ali email naslov. Poskusi še enkrat ali ustvari '
+                           '<a href="/user/sign-up/">nov račun</a>',
+                'type': 'warning'
+            }
+            return render_template('login.html', alert=alert)
 
         token = str(uuid.uuid4())
         user.session_token = token
@@ -165,6 +197,8 @@ def all_users():
 @app.route("/user/<user_id>")
 def user_detail(user_id):
     user = db.query(User).get(int(user_id))
+    if not user:
+        abort(404)
 
     return render_template("profile.html", user_data=user)
 

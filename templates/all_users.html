@@ -1,13 +1,15 @@
 {% extends "base.html" %}
 
 
-    {% block content %}
+{% block content %}
 
-    <ul class="list-group">
-        {% for user in users %}
-        <li class="list-group-item"><a href="/user/{{ user.id }}">{{ user.name }}</a> <small>({{ user.email
-            }})</small></li>
-        {% endfor %}
-    </ul>
+<h1>Vsi uporabniki</h1>
 
-    {% endblock content %}
+<ul class="list-group">
+    {% for user in users %}
+    <li class="list-group-item"><a href="/user/{{ user.id }}">{{ user.name }}</a> <small>({{ user.email
+        }})</small></li>
+    {% endfor %}
+</ul>
+
+{% endblock content %}

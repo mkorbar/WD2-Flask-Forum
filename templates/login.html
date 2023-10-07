@@ -4,10 +4,13 @@
     {% block content %}
 
     <h1>Prijavi se</h1>
+    {% if alert %}
+    <div class="alert alert-{{alert['type']}}">{{alert['message']}}</div>
+    {% endif %}
     <form action="login" method="post">
         <div class="mb-3">
-            <label class="form-label" for="user-email-name">Ime ali Email</label>
-            <input class="form-control" type="text" id="user-email-name" name="user-email-name" placeholder="janez@example.si">
+            <label class="form-label" for="user-email">Ime ali Email</label>
+            <input class="form-control" type="text" id="user-email" name="user-email" placeholder="janez@example.si">
         </div>
         <div class="mb-3">
             <label class="form-label" for="user-pass">Password</label>

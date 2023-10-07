@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+<h1>Forum - seznam tem</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Tema</th>
+      <th scope="col">Avtor</th>
+      <th scope="col">Ustvarjeno-datum</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for topic in topics %}
+    <tr>
+      <td><a href="/forum/{{ topic.id }}">{{ topic.title }}</a></td>
+      <td>{{ topic.author.name }}</td>
+      <td>{{ topic.created }}</td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+<a href="/forum/new-topic" class="btn btn-outline-primary">Ustvari novo temo</a>
+
+{% endblock content %}

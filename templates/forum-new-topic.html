@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+<h1>Ustvari novo temo</h1>
+<form action="/forum/new-topic" method="post">
+<div class="mb-3">
+  <label for="topic-name" class="form-label">Ime teme</label>
+  <input type="text" class="form-control" id="topic-name" name="topic-name">
+</div>
+<div class="mb-3">
+  <label for="topic-body" class="form-label">Opis teme</label>
+  <textarea class="form-control" id="topic-body" name="topic-body" rows="5"></textarea>
+</div>
+<div class="mb-6">
+    <button type="submit" class="btn btn-primary">Ustvari</button>
+</div>
+</form>
+{% endblock content %}

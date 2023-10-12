@@ -3,6 +3,10 @@ from flask import Flask, render_template, request, make_response, redirect, url_
 from models import User, Topic, db
 import uuid
 import hashlib
+import os
+import smartninja_redis
+
+redis = smartninja_redis.from_url(os.environ.get('REDIS_URL'))
 
 app = Flask(__name__)
 app.url_map.strict_slashes = False
@@ -36,18 +40,27 @@ def forum():
 
 @app.route('/forum/new-topic', methods=['GET', 'POST'])
 def forum_new_topic():
+    user = get_user()
+    if not user:
+        return redirect(url_for('login'))
+
+    csrf_token = str(uuid.uuid4())
+    redis.set(name=csrf_token, value=user.name)
+
     if request.method == 'GET':
-        return render_template('forum-new-topic.html')
+        return render_template('forum-new-topic.html', csrf_token=csrf_token)
     else:
-        name = request.form.get('topic-name')
-        body = request.form.get('topic-body')
+        csrf_token = request.form.get('csrf_token')
+        redis_csrf_uname = redis.get(name=csrf_token).decode()
+        print(redis_csrf_uname)
+        if redis_csrf_uname and redis_csrf_uname == user.name:
+            name = request.form.get('topic-name')
+            body = request.form.get('topic-body')
 
-        user = get_user()
-        if not user:
-            return redirect(url_for('login'))
-
-        topic = Topic.create(title=name, text=body, author=user)
-        return redirect(url_for('forum'))
+            topic = Topic.create(title=name, text=body, author=user)
+            return redirect(url_for('forum'))
+        else:
+            abort(403)
 
 
 @app.route('/forum/<topic_id>', methods=['GET'])

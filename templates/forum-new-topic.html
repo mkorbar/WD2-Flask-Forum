@@ -5,6 +5,7 @@
 
 <h1>Ustvari novo temo</h1>
 <form action="/forum/new-topic" method="post">
+    <input name="csrf_token" type="hidden" value="{{ csrf_token }}">
 <div class="mb-3">
   <label for="topic-name" class="form-label">Ime teme</label>
   <input type="text" class="form-control" id="topic-name" name="topic-name">

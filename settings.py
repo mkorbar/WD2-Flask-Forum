@@ -1,0 +1,1 @@
+MAX_SECRET = 30

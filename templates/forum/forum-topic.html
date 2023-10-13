@@ -8,5 +8,31 @@
 <div class="mb-3">
     {{ topic.text }}
 </div>
-<a href="/forum" class="btn btn-outline-primary">Nazaj na Forum</a>
+
+<div>
+    {% for comment in comments %}
+    <div class="card mb-3">
+        <div class="card-body">
+            <p class="card-text">{{ comment.text }}</p>
+        </div>
+        <small class="card-footer d-flex justify-content-between">
+            <span>{{ comment.author.name }}</span>
+            <span class="text-muted">{{ comment.created }}</span>
+        </small>
+    </div>
+    {% endfor %}
+</div>
+<div>
+    <form action="/forum/{{ topic.id }}" method="post">
+        <input name="csrf_token" type="hidden" value="{{ csrf_token }}">
+        <div class="mb-3">
+            <label for="comment-body" class="form-label">Nov komentar</label>
+            <textarea class="form-control" id="comment-body" name="comment-body" rows="3"></textarea>
+        </div>
+        <div class="mb-6">
+            <button type="submit" class="btn btn-primary">Ustvari</button>
+            <a href="/forum" class="btn btn-outline-primary">Nazaj na Forum</a>
+        </div>
+    </form>
+</div>
 {% endblock content %}

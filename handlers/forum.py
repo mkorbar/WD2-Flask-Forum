@@ -50,7 +50,7 @@ def forum_topic_detail(topic_id):
         comments = db.query(Comment).filter_by(topic_id=topic_id).all()
         csrf_token = create_token(user.name)
 
-        return render_template('forum/forum-topic.html', topic=topic, comments=comments, csrf_token=csrf_token)
+        return render_template('forum/forum-topic.html', topic=topic, user=user, comments=comments, csrf_token=csrf_token)
     else:
         csrf_token = request.form.get('csrf_token')
 

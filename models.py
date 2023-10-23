@@ -1,9 +1,10 @@
 import os
 from sqla_wrapper import SQLAlchemy
 from datetime import datetime
+from flask import request
 
 # this connects to a database either on Heroku or on localhost
-db = SQLAlchemy(os.getenv("DATABASE_URL", "sqlite:///localhost.sqlite"))
+db = SQLAlchemy(os.getenv("DATABASE_URL", "sqlite:///localhost.sqlite"), scopefunc=lambda: request)
 
 
 class User(db.Model):

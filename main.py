@@ -15,4 +15,4 @@ app.register_blueprint(page.page_handlers)
 app.register_blueprint(user.user_handlers)
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)

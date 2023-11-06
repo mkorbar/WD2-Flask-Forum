@@ -1,12 +1,43 @@
 {% extends "base.html" %}
 
 
+
+  {% block head %}
+<style>
+    td {
+    font-size: 2em;
+    width: 2em;
+    height: 2em;
+    border: thin solid black;
+    text-align: center;
+    }
+</style>
+  {% endblock %}
+
     {% block content %}
 
     <h1>O tej strani</h1>
     <p>Ta stran je namenjena igranju preproste igre ugibanja skritega števila.</p>
-    <p>Ko se uporabnik vpiše v stran s svojim imenom in elektronsko pošto, mu aplikacija določi skrito število, ki se
+    <p id="testId">Ko se uporabnik vpiše v stran s svojim imenom in elektronsko pošto, mu aplikacija določi skrito število, ki se
         shrani v bazo. Uporabnik nato lahko ugiba skrito število.</p>
     <p>Stran je bila narejena kot vaja pri tečaju Smart Ninja - Web development 1.</p>
+<p class="alert alert-warning" id="alert">adsfdasfdas d asdf das f</p>
+<table class="mx-auto">
+    <tr>
+        <td id="box1-1" onclick="makeMove(1, 1)"></td>
+        <td id="box1-2" onclick="makeMove(1, 2)"></td>
+        <td id="box1-3" onclick="makeMove(1, 3)"></td>
+    </tr>
+    <tr>
+        <td id="box2-1" onclick="makeMove(2, 1)"></td>
+        <td id="box2-2" onclick="makeMove(2, 2)"></td>
+        <td id="box2-3" onclick="makeMove(2, 3)"></td>
+    </tr>
+    <tr>
+        <td id="box3-1" onclick="makeMove(3, 1)"></td>
+        <td id="box3-2" onclick="makeMove(3, 2)"></td>
+        <td id="box3-3" onclick="makeMove(3, 3)"></td>
+    </tr>
+</table>
 
     {% endblock content %}

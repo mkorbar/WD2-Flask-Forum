@@ -63,4 +63,33 @@ for(let i = 1; i <= 100; i++) {
   }
   console.log(out);
 }
+//*/
+
+var h1Headers = document.getElementsByTagName('h1');
+
+//setInterval( () => {
+//var h1Headers = document.getElementsByTagName('h1');
+//h1Headers[0].innerHTML = '.' + h1Headers[0].innerHTML;
+//
+//}, 250)
+
+//var navItems = document.getElementsByClassName('nav-item');
+//console.log(navItems);
+//navItems[2].style.color = 'red';
+
+function eventHandler() {
+alert('!!!')
+}
+
+var paragraph = document.getElementById('testId');
+
+paragraph.addEventListener('mouseover', eventHandler);
+console.log(paragraph);
+
+/*
+h1
+.class
+#id
 */
+
+

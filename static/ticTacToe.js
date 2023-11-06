@@ -1,15 +1,34 @@
+"use strict";
+
+(function() {
 
 const PLAYER_1 = 'X';
 const PLAYER_2 = 'O';
 
-var currentPlayer = PLAYER_1;
+let currentPlayer = PLAYER_1;
 
-var board = [
+let board = [
             ['','',''],
             ['','',''],
             ['','',''],
             ];
 
+document.getElementById('box1-1').addEventListener('click', clickHandler)
+document.getElementById('box1-2').addEventListener('click', clickHandler)
+document.getElementById('box1-3').addEventListener('click', clickHandler)
+document.getElementById('box2-1').addEventListener('click', clickHandler)
+document.getElementById('box2-2').addEventListener('click', clickHandler)
+document.getElementById('box2-3').addEventListener('click', clickHandler)
+document.getElementById('box3-1').addEventListener('click', clickHandler)
+document.getElementById('box3-2').addEventListener('click', clickHandler)
+document.getElementById('box3-3').addEventListener('click', clickHandler)
+
+
+function clickHandler() {
+  let x = this.id.substr(-3,1);
+  let y = this.id.substr(-1,1);
+  makeMove(x, y);
+}
 
 function makeMove(x, y) {
   if(board[x-1][y-1] !== '') {
@@ -19,7 +38,8 @@ function makeMove(x, y) {
   board[x-1][y-1] = currentPlayer;
 
   displayBoard();
-  if (isGameFinished()){
+  if (isGameFinished()) {
+      let a = '123'
       alert('game finished');
       resetBoard();
   } else {
@@ -92,3 +112,4 @@ function resetBoard(){
 
 // logika za zmago
 // resetiraj igro
+}());

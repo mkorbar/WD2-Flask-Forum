@@ -1,0 +1,124 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "John Doe",
+      "username": "johndoe123",
+      "email": "john.doe@example.com",
+      "phone": "555-123-4567",
+      "address": {
+        "street": "123 Main St",
+        "city": "Cityville",
+        "zipcode": "12345"
+      }
+    },
+    {
+      "id": 2,
+      "name": "Jane Smith",
+      "username": "janesmith456",
+      "email": "jane.smith@example.com",
+      "phone": "555-987-6543",
+      "address": {
+        "street": "456 Elm St",
+        "city": "Townsville",
+        "zipcode": "54321"
+      }
+    },
+    {
+      "id": 3,
+      "name": "Michael Johnson",
+      "username": "mikej",
+      "email": "michael.j@example.com",
+      "phone": "555-567-8901",
+      "address": {
+        "street": "789 Oak Ave",
+        "city": "Villagetown",
+        "zipcode": "67890"
+      }
+    },
+    {
+      "id": 4,
+      "name": "Emily Wilson",
+      "username": "emilyw",
+      "email": "emily.w@example.com",
+      "phone": "555-234-5678",
+      "address": {
+        "street": "101 Pine Rd",
+        "city": "Hamletville",
+        "zipcode": "45678"
+      }
+    },
+    {
+      "id": 5,
+      "name": "David Brown",
+      "username": "davidb123",
+      "email": "david.b@example.com",
+      "phone": "555-765-4321",
+      "address": {
+        "street": "321 Cedar Ln",
+        "city": "Forestville",
+        "zipcode": "76543"
+      }
+    },
+    {
+      "id": 6,
+      "name": "Sarah Lee",
+      "username": "sarahlee",
+      "email": "sarah.lee@example.com",
+      "phone": "555-321-6547",
+      "address": {
+        "street": "555 Birch Ave",
+        "city": "Grovetown",
+        "zipcode": "98765"
+      }
+    },
+    {
+      "id": 7,
+      "name": "Kevin Turner",
+      "username": "kevint",
+      "email": "kevin.t@example.com",
+      "phone": "555-876-5432",
+      "address": {
+        "street": "999 Maple St",
+        "city": "Leafville",
+        "zipcode": "87654"
+      }
+    },
+    {
+      "id": 8,
+      "name": "Laura Adams",
+      "username": "laura_a",
+      "email": "laura.a@example.com",
+      "phone": "555-432-7654",
+      "address": {
+        "street": "777 Redwood Rd",
+        "city": "Treewood",
+        "zipcode": "65432"
+      }
+    },
+    {
+      "id": 9,
+      "name": "Brian Hall",
+      "username": "brianh",
+      "email": "brian.h@example.com",
+      "phone": "555-654-3210",
+      "address": {
+        "street": "444 Spruce Ave",
+        "city": "Firsville",
+        "zipcode": "54321"
+      }
+    },
+    {
+      "id": 10,
+      "name": "Jennifer Clark",
+      "username": "jennc",
+      "email": "jennifer.c@example.com",
+      "phone": "555-210-7654",
+      "address": {
+        "street": "666 Pinecone Ln",
+        "city": "Conetown",
+        "zipcode": "43210"
+      }
+    }
+  ]
+}

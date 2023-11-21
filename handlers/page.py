@@ -1,8 +1,11 @@
-from flask import render_template, Blueprint
+from flask import render_template, Blueprint, make_response
 
 page_handlers = Blueprint("page_handlers", __name__)
 
 
 @page_handlers.route('/about', methods=['GET'])
 def about():
-    return render_template('page/about.html')
+    page = make_response(render_template('page/about.html'))
+    page.set_cookie('token', 'tokencookieValue')
+
+    return page

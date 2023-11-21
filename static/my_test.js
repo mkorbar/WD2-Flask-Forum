@@ -1,11 +1,16 @@
 
 
-let user = {
- firstName: 'Janez',
- lastName: 'Novak',
- age: 123,
+// document.cookie = 'name=Matej';
 
- fullName: function() {
-  return this.firstName + ' ' + this.lastName
- }
-}
+// let language = document.cookie
+
+// console.log(language);
+
+
+// localStorage.setItem('language', 'English');
+
+// let language = localStorage.getItem('language');
+
+// console.log(language);
+
+// sessionStorage.setItem('language', 'French');

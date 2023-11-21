@@ -7,11 +7,18 @@ const PLAYER_2 = 'O';
 
 let currentPlayer = PLAYER_1;
 
-let board = [
-            ['','',''],
-            ['','',''],
-            ['','',''],
-            ];
+var board = [
+  ['','',''],
+  ['','',''],
+  ['','',''],
+];
+let storedBoard = JSON.parse(sessionStorage.getItem('board'));
+console.log(storedBoard);
+
+if(storedBoard) {
+  board = storedBoard;
+  displayBoard();
+}
 
 document.getElementById('box1-1').addEventListener('click', clickHandler)
 document.getElementById('box1-2').addEventListener('click', clickHandler)
@@ -36,6 +43,8 @@ function makeMove(x, y) {
     return;
   }
   board[x-1][y-1] = currentPlayer;
+
+  sessionStorage.setItem('board', JSON.stringify(board));
 
   displayBoard();
   if (isGameFinished()) {
@@ -108,6 +117,7 @@ function resetBoard(){
             ];
   currentPlayer = PLAYER_1;
   displayBoard();
+  sessionStorage.clear();
 };
 
 // logika za zmago
